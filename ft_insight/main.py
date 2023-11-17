@@ -1,31 +1,36 @@
+import time
+
 from openai import OpenAI
 
 client = OpenAI()
+assistant_id = "asst_OyRLwTQFyByVaSZCbfxJRfAA"
 
+thread = client.beta.threads.create()
 
-def create_assistant():
-    assistant = client.beta.assistants.create(
-        name="Folketinget Insight",
-        instructions="You are an expert in danish politics. \
-        Answer questions related to folketingets meeting minutes. \
-        You may ONLY communicate in Danish. \
-        Under no circumstances may you communicate in any other language.",
-        tools=[{"type": "code_interpreter"}],
-        model="gpt-4-1106-preview",
-    )
+message = client.beta.threads.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="Hvad kan du fortælle mig om mødereferaterne?",
+)
 
-    return assistant
+run = client.beta.threads.runs.create(
+    thread_id=thread.id,
+    assistant_id=assistant_id,
+    instructions="Du må KUN tale dansk",
+)
 
+messages = client.beta.threads.messages.list(thread_id=thread.id)
 
-def create_thread():
-    thread = client.beta.threads.create()
-    return thread
+run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
 
+while run.completed_at is None:
+    run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+    time.sleep(2)
 
-def create_message(thread, content):
-    message = client.beta.threads.messages.create(
-        thread_id=thread.id,
-        role="user",
-        content=content,
-    )
-    return message
+print("Complete!")
+messages = client.beta.threads.messages.list(thread_id=thread.id)
+
+# TODO: Extract message response
+print(messages)
+# TODO: Create loop that enables continous conversation
+# TODO: Put into streamlit app
