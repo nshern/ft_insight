@@ -8,7 +8,7 @@ Set OpenAI api key as environment variable
 ## Set up environment variable
 bash, sh, zsh
 ```
-export SERPAPI_KEY=[Insert sertapi key]
+export OPENAI_API_KEY=[Insert sertapi key]
 ```
 
 or fish
