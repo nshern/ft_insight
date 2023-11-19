@@ -2,6 +2,7 @@ import os
 import time
 
 from openai import OpenAI
+from rich.console import Console
 
 client = OpenAI()
 assistant_id = "asst_OyRLwTQFyByVaSZCbfxJRfAA"
@@ -31,6 +32,8 @@ def create_run(thread):
 
 
 def main():
+    console = Console()
+    os.system("clear")
     thread = create_thread()
     while True:
         content = input("user: ")
@@ -50,8 +53,14 @@ def main():
         os.system("clear")
         for i in reversed(messages_list):
             role = i.role
+            if role == "user":
+                style = "white"
+            else:
+                style = "cyan"
             for c in i.content:
-                print(f"{role}: {c.text.value}")  # type: ignore
+                console.print(
+                    f"{role}: {c.text.value}", style=style  # type: ignore
+                )
 
 
 if __name__ == "__main__":
