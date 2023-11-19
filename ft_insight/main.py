@@ -10,7 +10,7 @@ thread = client.beta.threads.create()
 message = client.beta.threads.messages.create(
     thread_id=thread.id,
     role="user",
-    content="Hvad kan du fortælle mig om mødereferaterne?",
+    content="Hvilken person har talt mest på møderne?",
 )
 
 run = client.beta.threads.runs.create(
@@ -27,10 +27,13 @@ while run.completed_at is None:
     run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
     time.sleep(2)
 
-print("Complete!")
 messages = client.beta.threads.messages.list(thread_id=thread.id)
 
-# TODO: Extract message response
-print(messages)
+for i in messages:
+    role = i.role
+    for c in i.content:
+        print(f"{role}: {c.text.value}")  # type: ignore
+
+
 # TODO: Create loop that enables continous conversation
 # TODO: Put into streamlit app
