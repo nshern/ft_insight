@@ -28,4 +28,4 @@ python main.py
 ```
 
 ## Acknowledgments
-- [polGPT](https://github.com/emillykkejensen/polGPT) using the OpenAI [Assistants API](https://platform.openai.com/docs/assistants/overview)
+- [polGPT](https://github.com/emillykkejensen/polGPT)
