@@ -1,0 +1,28 @@
+# FT Insight
+
+This project is an attempt at recreating the functionality of [polGPT](https://github.com/emillykkejensen/polGPT) using the OpenAI [Assistants API](https://platform.openai.com/docs/assistants/overview)
+
+## Usage:
+Set OpenAI api key as environment variable
+
+## Set up environment variable
+bash, sh, zsh
+```
+export SERPAPI_KEY=[Insert sertapi key]
+```
+
+or fish
+```
+set -Ux OPENAI_API_KEY [Insert open ai api key]
+```
+
+## Install dependencies
+```
+cd to/folder/path
+poetry install
+```
+
+## Run CLI
+```
+python main.py
+```
