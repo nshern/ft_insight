@@ -1,8 +1,8 @@
 # FT Insight
 
-This project is an attempt at recreating the functionality of [polGPT](https://github.com/emillykkejensen/polGPT) using the OpenAI [Assistants API](https://platform.openai.com/docs/assistants/overview)
+This project is an attempt at recreating [polGPT](https://github.com/emillykkejensen/polGPT) using the OpenAI [Assistants API](https://platform.openai.com/docs/assistants/overview)
 
-## Usage:
+## Usage
 Set OpenAI api key as environment variable
 
 ## Set up environment variable
@@ -26,3 +26,6 @@ poetry install
 ```
 python main.py
 ```
+
+## Acknowledgments
+- [polGPT](https://github.com/emillykkejensen/polGPT) using the OpenAI [Assistants API](https://platform.openai.com/docs/assistants/overview)
