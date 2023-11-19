@@ -27,7 +27,7 @@ poetry install
 
 ### Run CLI
 ```
-python main.py
+python ft_insight/main.py
 ```
 
 ## Acknowledgments
