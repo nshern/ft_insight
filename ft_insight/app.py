@@ -44,17 +44,13 @@ if prompt := st.chat_input(""):
             time.sleep(2)
 
     messages = client.beta.threads.messages.list(thread_id=thread.id)
-    message_list = list(messages)
-    responses = []
-    for i in message_list:
-        for c in i.content:
-            responses.append(c.text.value)
-    # response = [i for i in messages if i.role == "assistant"]
-    # response = [i.content for i in response]
-    response = responses
+    # message_list = list(messages)
+    response = next(
+        (m.content[0].text.value for m in messages if m.role == "assistant"),
+        "",
+    )
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        st.markdown(len(response))
         st.markdown(response)
     # Add assistant response to chat history
     st.session_state.messages.append(
